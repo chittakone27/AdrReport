@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Row, Col, Table, Spin, Card } from "antd";
 import { Pie } from "@ant-design/plots";
 import axios from "axios";
-import { useAuth } from "../../AuthContext";
+// import { useAuth } from "../../AuthContext";
 import "../style/global.css";
 
 const Serious = ({ orgUnitId, startDate, endDate }) => {
-  const { auth } = useAuth();
+  // const { auth } = useAuth();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -30,10 +30,10 @@ const Serious = ({ orgUnitId, startDate, endDate }) => {
         const res = await axios.get(
           "https://dhis2.asia/laotracker/api/29/analytics/events/aggregate/AQBx2QVBvRH.json",
           {
-            auth: {
-              username: auth.username,
-              password: auth.password,
-            },
+            // auth: {
+            //   username: auth.username,
+            //   password: auth.password,
+            // },
             params,
           }
         );

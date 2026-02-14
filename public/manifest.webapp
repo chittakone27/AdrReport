@@ -7,14 +7,14 @@
     }
   },
   "appType": "DASHBOARD_WIDGET",
-  "name": "ບົດລາຍງານຕິດຕາມ ການລາຍງານຂອງ ບົດລາຍງານປະຈຳປີ",
+  "name": "ບົດລາຍງານ ADR",
   "version": "0.1.1",
   "description": "TEST DASHBOARD WIDGET APP",
   "developer": {
     "name": "owen"
   },
-  "key": "FM",
-  "short_name": "FM",
+  "key": "adr",
+  "short_name": "adr",
   "icons": {
     "16": "icon.png",
     "48": "icon.png",

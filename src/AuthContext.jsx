@@ -6,6 +6,7 @@ export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     username: "01chittakone",
     password: "Wen27101998!",
+
   });
 
   const clearAuth = () => setAuth(null);

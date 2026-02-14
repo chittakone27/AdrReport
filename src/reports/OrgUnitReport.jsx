@@ -5,7 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Page from "./tabpages/age";
-import { useAuth } from "../AuthContext";
+// import { useAuth } from "../AuthContext";
 import { Tabs } from "antd"; // import Tabs
 import Gender from "./tabpages/gender";
 import OrgUnit from'./tabpages/orgunit';
@@ -18,7 +18,7 @@ import SeriousnessCriteria from './tabpages/SeriousnessCriteria'
 const { TabPane } = Tabs;
 
 const OrgUnitReport = () => {
-   const { auth } = useAuth(); 
+  //  const { auth } = useAuth(); 
   const [rawOrgTree, setRawOrgTree] = useState([]);
   const [treeData, setTreeData] = useState([]);
   const [selectedOrg, setSelectedOrg] = useState(null);
@@ -56,18 +56,18 @@ const OrgUnitReport = () => {
   };
 
 const fetchOrgUnits = async () => {
-  if (!auth?.username || !auth?.password) {
-    toast.error("User not authenticated");
-    setLoading(false);
-    return;
-  }
+  // if (!auth?.username || !auth?.password) {
+  //   toast.error("User not authenticated");
+  //   setLoading(false);
+  //   return;
+  // }
 
-  const axiosAuth = {
-    auth: {
-      username: auth.username,
-      password: auth.password,
-    },
-  };
+  // const axiosAuth = {
+  //   auth: {
+  //     username: auth.username,
+  //     password: auth.password,
+  //   },
+  // };
 
   const toastId = toast.loading("ກຳລັງໂຫຼດໂຄງຮ່າງການຈັດຕັ້ງ...", {
     style: { fontFamily: "Noto Sans Lao, sans-serif", fontSize: "16px" },
@@ -76,7 +76,7 @@ const fetchOrgUnits = async () => {
   try {
     const meRes = await axios.get(
       "https://dhis2.asia/laotracker/api/me.json",
-      axiosAuth
+      // axiosAuth
     );
 
     const roots = meRes.data?.organisationUnits || [];
@@ -85,7 +85,7 @@ const fetchOrgUnits = async () => {
       axios.get(
         `https://dhis2.asia/laotracker/api/organisationUnits/${r.id}.json`,
         {
-          ...axiosAuth,
+          // ...axiosAuth,
           params: {
             fields:
               "id,displayName,level,children[id,displayName,level,children[id,displayName,level,children[id,displayName,level]]]",
@@ -259,7 +259,7 @@ const fetchOrgUnits = async () => {
                           <Tabs.TabPane tab="initial date" key="9">
                 <InitialDate
                   orgUnitId={reportParams.orgUnitId}
-                  startDate={reportParams.startDate}
+                  orgUnitLevel={reportParams.orgUnitLevel}
                   endDate={reportParams.endDate}
                 />
               </Tabs.TabPane>

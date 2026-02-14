@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { Bar } from "@ant-design/plots";
 import { Row, Col, Table, Spin, Card } from "antd";
-import { useAuth } from "../../AuthContext"; // make sure path is correct
+// import { useAuth } from "../../AuthContext"; // make sure path is correct
 import "../style/global.css"
 
 const AgePage = ({ orgUnitId, startDate, endDate }) => {
-  const { auth } = useAuth();
+  // const { auth } = useAuth();
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
 
   // 1️⃣ Fetch data
   useEffect(() => {
-    if (!auth?.username || !auth?.password) return;
+    // if (!auth?.username || !auth?.password) return;
 
-    const authHeader = "Basic " + btoa(`${auth.username}:${auth.password}`);
+    // const authHeader = "Basic " + btoa(`${auth.username}:${auth.password}`);
 
     fetch(
       `https://dhis2.asia/laotracker/api/29/analytics/events/query/AQBx2QVBvRH.json?&dimension=ou:${orgUnitId}&dimension=d3iJyrWjNUy.UHoBhxTMPuR&dimension=d3iJyrWjNUy.ENqg722pqNJ&dimension=d3iJyrWjNUy.SM6PGmEgqbV&stage=d3iJyrWjNUy&startDate=${startDate}&endDate=${endDate}&displayProperty=NAME&totalPages=false&outputType=EVENT&desc=eventdate&paging=false`,
       {
         headers: {
-          Authorization: authHeader,
+          // Authorization: authHeader,
           "Content-Type": "application/json",
         },
       }
@@ -37,7 +37,9 @@ const AgePage = ({ orgUnitId, startDate, endDate }) => {
         setRows([]);
         setLoading(false);
       });
-  }, [auth]);
+  // }, [auth]);
+    });
+
 
 
 // Convert days/months/years to decimal years

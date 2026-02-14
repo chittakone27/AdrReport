@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { Bar } from "@ant-design/plots";
 import { Row, Col, Table, Spin, Card } from "antd";
-import { useAuth } from "../../AuthContext";
+// import { useAuth } from "../../AuthContext";
 import "../style/global.css";
 
 const Reaction = ({ orgUnitId, startDate, endDate }) => {
-  const { auth } = useAuth();
+  // const { auth } = useAuth();
   const [rows, setRows] = useState([]);
   const [metaData, setMetaData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!auth?.username || !auth?.password) return;
+    // if (!auth?.username || !auth?.password) return;
 
-    const authHeader = "Basic " + btoa(`${auth.username}:${auth.password}`);
+    // const authHeader = "Basic " + btoa(`${auth.username}:${auth.password}`);
     const url = `https://dhis2.asia/laotracker/api/29/analytics/events/aggregate/AQBx2QVBvRH.json?dimension=ou:${orgUnitId}&dimension=d3iJyrWjNUy.bCa0xvLA6jN&stage=d3iJyrWjNUy&startDate=${startDate}&endDate=${endDate}&displayProperty=NAME&totalPages=false&outputType=EVENT`;
 
     fetch(url, {
       headers: {
-        Authorization: authHeader,
+        // Authorization: authHeader,
         "Content-Type": "application/json",
       },
     })
@@ -37,7 +37,9 @@ const Reaction = ({ orgUnitId, startDate, endDate }) => {
         setMetaData(null);
         setLoading(false);
       });
-  }, [auth, orgUnitId, startDate, endDate]);
+  // }, [auth, orgUnitId, startDate, endDate]);
+    }, [orgUnitId, startDate, endDate]);
+
 
   if (loading)
     return (

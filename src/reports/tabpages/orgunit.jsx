@@ -1,34 +1,36 @@
 import React, { useEffect, useState } from "react";
 import { Bar } from "@ant-design/plots";
 import { Row, Col, Table, Spin, Card } from "antd";
-import { useAuth } from "../../AuthContext";
+// import { useAuth } from "../../AuthContext";
 import "../style/global.css"
 
 const ProvinceEventPage = ({ orgUnitId, orgUnitLevel, startDate, endDate }) => {
-  const { auth } = useAuth();
+  // const { auth } = useAuth();
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [metaData, setMetaData] = useState(null);
 
   // Top-level org unit mapping
   const orgUnitMap = {
-    1: "jblbYwuvO33",
-    2: "Zh1inFu0Z2O",
+    1: "OU_GROUP-jblbYwuvO33",
+    2: "OU_GROUP-Zh1inFu0Z2O;OU_GROUP-gHfSdwPrC83;",
+    3: "OU_GROUP-Zh1inFu0Z2O;OU_GROUP-gHfSdwPrC83;",
+
   };
 
   useEffect(() => {
-    if (!auth?.username || !auth?.password) return;
+    // if (!auth?.username || !auth?.password) return;
 
     const topLevelId = orgUnitMap[orgUnitLevel];
     if (!topLevelId) return;
 
-    const authHeader = "Basic " + btoa(`${auth.username}:${auth.password}`);
+    // const authHeader = "Basic " + btoa(`${auth.username}:${auth.password}`);
 
-    const url = `https://dhis2.asia/laotracker/api/29/analytics/events/aggregate/AQBx2QVBvRH.json?dimension=ou:OU_GROUP-${topLevelId};${orgUnitId}&stage=d3iJyrWjNUy&startDate=${startDate}&endDate=${endDate}&displayProperty=NAME&totalPages=false&outputType=EVENT`;
+    const url = `https://dhis2.asia/laotracker/api/29/analytics/events/aggregate/AQBx2QVBvRH.json?dimension=ou:${topLevelId};${orgUnitId}&stage=d3iJyrWjNUy&startDate=${startDate}&endDate=${endDate}&displayProperty=NAME&totalPages=false&outputType=EVENT`;
 
     fetch(url, {
       headers: {
-        Authorization: authHeader,
+        // Authorization: authHeader,
         "Content-Type": "application/json",
       },
     })
@@ -47,7 +49,9 @@ const ProvinceEventPage = ({ orgUnitId, orgUnitLevel, startDate, endDate }) => {
         setMetaData(null);
         setLoading(false);
       });
-  }, [auth, orgUnitLevel, orgUnitId, startDate, endDate]);
+  // }, [auth, orgUnitLevel, orgUnitId, startDate, endDate]);
+    }, [orgUnitLevel, orgUnitId, startDate, endDate]);
+
 
   if (loading)
     return (

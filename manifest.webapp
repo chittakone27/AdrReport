@@ -7,7 +7,7 @@
     }
   },
   "appType": "DASHBOARD_WIDGET",
-  "name": "ບົດລາຍງານຕິດຕາມ ການລາຍງານຂອງ ບົດລາຍງານປະຈຳປີ",
+  "name": "ບົດລາຍງານ ADR",
   "version": "0.1.1",
   "description": "TEST DASHBOARD WIDGET APP",
   "developer": {

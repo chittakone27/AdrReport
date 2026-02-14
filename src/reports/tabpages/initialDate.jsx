@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Column } from "@ant-design/plots";
 import { Row, Col, Table, Spin, Card } from "antd";
-import { useAuth } from "../../AuthContext";
+// import { useAuth } from "../../AuthContext";
 import "../style/global.css";
 
-const InitialDate = ({ orgUnitId, startDate, endDate }) => {
-  const { auth } = useAuth();
+const InitialDate = ({ orgUnitId, orgUnitLevel, endDate }) => {
+  // const { auth } = useAuth();
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
 
   // 🔹 Fetch data
   useEffect(() => {
-    if (!auth?.username || !auth?.password || !endDate || !orgUnitId) return;
+    // if (!auth?.username || !auth?.password || !endDate || !orgUnitId) return;
 
-    const authHeader =
-      "Basic " + btoa(`${auth.username}:${auth.password}`);
+    // const authHeader =
+    //   "Basic " + btoa(`${auth.username}:${auth.password}`);
 
-    const startYear = 2023;
+    const startYear = 2026;
     const endYear = Number(endDate.split("-")[0]);
 
     const years = Array.from(
@@ -32,7 +32,7 @@ const InitialDate = ({ orgUnitId, startDate, endDate }) => {
 
     fetch(url, {
       headers: {
-        Authorization: authHeader,
+        // Authorization: authHeader,
         "Content-Type": "application/json",
       },
     })
@@ -49,16 +49,26 @@ const InitialDate = ({ orgUnitId, startDate, endDate }) => {
         setRows([]);
         setLoading(false);
       });
-  }, [auth, endDate, orgUnitId]);
+  // }, [auth, endDate, orgUnitId,orgUnitLevel]);
+    }, [ endDate, orgUnitId,orgUnitLevel]);
 
   // 🔹 Aggregate by Year
   const yearMap = {};
+console.log('level =', orgUnitLevel);
 
+if (orgUnitLevel === 1) {
   rows.forEach((row) => {
     const year = row[0];        // "2025"
     const value = Number(row[2]); // "12" → 12
     yearMap[year] = (yearMap[year] || 0) + value;
   });
+} else if (orgUnitLevel === 2) {
+  rows.forEach((row) => {
+    const year = row[1];        // "2025"
+    const value = Number(row[2]); // "12" → 12
+    yearMap[year] = (yearMap[year] || 0) + value;
+  });
+}
 
   // Convert to array + sort ascending
   const tableData = Object.keys(yearMap)
