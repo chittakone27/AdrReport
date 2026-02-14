@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Lao&display=swap');
+
+/* Global font for body */
+body, html {
+  font-family: 'Noto Sans Lao', sans-serif;
+}
+
+/* Force Ant Design components to inherit font */
+.ant-card, 
+.ant-card * {
+  font-family: 'Noto Sans Lao', sans-serif !important;
+}
+
+.ant-table, 
+.ant-table * {
+  font-family: 'Noto Sans Lao', sans-serif !important;
+}
+
+.ant-typography,
+.ant-btn,
+.ant-select,
+.ant-input {
+  font-family: 'Noto Sans Lao', sans-serif !important;
+}

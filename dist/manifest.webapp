@@ -1,0 +1,23 @@
+{
+  "launch_path": "index.html",
+  "default_locale": "en",
+  "activities": {
+    "dhis": {
+      "href": "*"
+    }
+  },
+  "appType": "DASHBOARD_WIDGET",
+  "name": "ບົດລາຍງານຕິດຕາມ ການລາຍງານຂອງ ບົດລາຍງານປະຈຳປີ",
+  "version": "0.1.1",
+  "description": "TEST DASHBOARD WIDGET APP",
+  "developer": {
+    "name": "owen"
+  },
+  "key": "FM",
+  "short_name": "FM",
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+}
